@@ -31,13 +31,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      # Buscar el archivo Index_copia??.html con el número más alto y renombrarlo a index.html
+      - name: Find and rename highest Index_copia??.html
+        run: |
+          file=$(ls Index_copia[0-9][0-9].html | sort -V | tail -n 1)
+          echo "Found $file"
+          mv "$file" index.html
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: '.'
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
