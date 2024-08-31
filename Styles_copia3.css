@@ -105,6 +105,23 @@ section {
     cursor: pointer; /* Cambia el cursor a una mano para indicar que es clicable */
 }
 
+.social-icon {
+    width: 80px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover para las imágenes */
+.social-icon:hover {
+    transform: translateY(-5px); /* Desplazamiento hacia arriba */
+}
+
+.imagen-footer {
+    width: 230px;
+    margin-right: 50px;
+    transition: transform 0.3s ease;
+}
+
 .servicio-texto {
     position: absolute;
     bottom: 0;
@@ -199,9 +216,13 @@ footer {
 /* Cambia el color de los títulos de las preguntas */
 .faq-contenido h2 {
     color: #000000; /* Reemplaza con el color que desees */
+    
 }
-.faq-contenido h3 {
-    color: #F78813; /* Reemplaza con el color que desees */
+.faq-contenido h3 { 
+    color:#F78813; /* Reemplaza con el color que desees */
+    text-decoration: underline;
+    text-decoration-color:#F78813
+  
 }
 
 /* Cambia el color del texto de las respuestas */
