@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       # Crear un directorio para el despliegue
       - name: Prepare deployment directory
         run: |
@@ -39,6 +39,12 @@ jobs:
           echo "Found $file"
           cp "$file" deploy/index.html
 
+      # Limpiar el directorio deploy para asegurar que no haya otros archivos
+      - name: Clean up deployment directory
+        run: |
+          cd deploy
+          rm -rf $(ls | grep -v index.html) || true
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -46,7 +52,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'deploy'
-      
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
