@@ -154,6 +154,22 @@
             </form>
         </div>
     </section>
+
+    <!-- Sección de Chat Virtual -->
+<div id="chat-modal" class="chat-modal">
+    <div class="chat-header">
+        <h2>Virtual Assistant</h2>
+        <button class="close-chat">Close</button>
+    </div>
+    <div class="chat-body">
+        <div id="chat-content"></div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chat-input" placeholder="Type your message...">
+        <button id="send-message">Send</button>
+    </div>
+</div>
+
     <footer>
         <div class="container">
             <p>2024 Mi Página Web. Todos los derechos reservados</p> 
@@ -182,6 +198,75 @@
             <button class="cerrar-faq">Close</button>
         </div>
     </div> 
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const faqImage = document.querySelector('.imagen-flotante');
+    const chatModal = document.getElementById('chat-modal');
+    const closeChatBtn = document.querySelector('.close-chat');
+    const sendMessageBtn = document.getElementById('send-message');
+    const chatInput = document.getElementById('chat-input');
+    const chatContent = document.getElementById('chat-content');
+
+    // Muestra el chat cuando se hace clic en la imagen FAQ
+    faqImage.addEventListener('click', function() {
+        chatModal.style.display = 'flex';
+        showBotMessage("Hello! How can I assist you today?");
+    });
+
+    // Cierra el chat cuando se hace clic en el botón de cerrar
+    closeChatBtn.addEventListener('click', function() {
+        chatModal.style.display = 'none';
+    });
+
+    // Enviar mensaje
+    sendMessageBtn.addEventListener('click', function() {
+        sendMessage();
+    });
+
+    // También permite enviar mensaje presionando Enter
+    chatInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const userMessage = chatInput.value.trim();
+        if (userMessage) {
+            appendMessage('User', userMessage);
+            chatInput.value = ''; // Limpia el input
+            // Aquí puedes definir respuestas automáticas
+            setTimeout(() => {
+                botResponse(userMessage);
+            }, 1000); // Simula un pequeño retraso en la respuesta del bot
+        }
+    }
+
+    function appendMessage(sender, message) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${sender}: ${message}`;
+        chatContent.appendChild(messageElement);
+        chatContent.scrollTop = chatContent.scrollHeight; // Desplázate hacia abajo en el chat
+    }
+
+    function showBotMessage(message) {
+        appendMessage('Bot', message);
+    }
+
+    function botResponse(userMessage) {
+        // Aquí puedes añadir lógica para generar respuestas del bot
+        let response = "Sorry, I don't understand that.";
+        if (userMessage.toLowerCase().includes('web3')) {
+            response = "Web3 is a new paradigm in web technology...";
+        } else if (userMessage.toLowerCase().includes('contact')) {
+            response = "You can reach us through the contact form on this page.";
+        }
+        showBotMessage(response);
+    }
+});
+
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
