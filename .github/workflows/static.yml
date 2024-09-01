@@ -39,12 +39,6 @@ jobs:
           echo "Found $file"
           cp "$file" deploy/index.html
 
-      # Limpiar el directorio deploy para asegurar que no haya otros archivos
-      - name: Clean up deployment directory
-        run: |
-          cd deploy
-          rm -rf $(ls | grep -v index.html) || true
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
