@@ -22,7 +22,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -32,21 +31,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      # Buscar el archivo Index_copia??.html con el número más alto y renombrarlo a index.html
-      - name: Find and rename highest Index_copia??.html
+      # Crear un directorio para el despliegue
+      - name: Prepare deployment directory
         run: |
+          mkdir -p deploy
           file=$(ls Index_copia[0-9][0-9].html | sort -V | tail -n 1)
           echo "Found $file"
-          mv "$file" index.html
-      
+          cp "$file" deploy/index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: 'deploy'
       
       - name: Deploy to GitHub Pages
         id: deployment
