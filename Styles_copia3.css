@@ -288,55 +288,6 @@ footer {
     background-color: #e8491d;
 }
 
-.chat-modal {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-}
-
-.chat-header {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chat-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-
-.chat-footer {
-    display: flex;
-    padding: 10px;
-}
-
-#chat-input {
-    flex: 1;
-    padding: 5px;
-}
-
-#send-message {
-    padding: 5px 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-
 @keyframes moverImagen {
     0% { transform: translateY(0); }
     50% { transform: translateY(-30px);}
